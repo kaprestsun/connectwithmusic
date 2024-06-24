@@ -1,7 +1,28 @@
 .topnav{
-    display:flex;
+    display: flex;
+    font-size: 30px;
+    background-color: black;
+    padding: 20px;
 }
 
 .maintitle{
     margin-right: auto;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+}
+
+.nav{
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    margin-right: 300px;
+}
+
+.nav:hover{
+    border-bottom: 5px solid white;
+}
+
+.explore{
+    margin-right: 20px;
 }

@@ -17,10 +17,23 @@ const APIController = (function(){
         return data.access_token; // use bearer token to call Spotify endpoints
     }
 
-    const _getUerTopTracks = async(token) => {
-        const result = await fetch('https://api.spotify.com/v1/me/top/{type}', {
+    const _getUserTopTracks = async(token) => {
+        const result = await fetch('https://api.spotify.com/v1/me/top/tracks', {
             method: 'GET',
             headers: {'Authorization': 'Bearer ' + token}
         });
-    }  
+    
+        const data = await result.json();
+        return data.items;
+    }
+
+    const _getUserTopArtists = async(token) => {
+        const result = await fetch('https://api.spotify.com/v1/me/top/artists', {
+            method: 'GET',
+            headers: {'Authorization': 'Bearer ' + token}
+        });
+
+        const data = await result.json();
+        return data.items;
+    }
 })();

@@ -36,4 +36,45 @@ const APIController = (function(){
         const data = await result.json();
         return data.items;
     }
+
+    const_getUserTopTracksMedium = async(token) => {
+        const result = await fetch('https://api.spotify.com/v1/me/top/tracks?time_range=medium_term', {
+            method: 'GET',
+            headers: {'Authorization': 'Bearer ' + token}
+        });
+    
+        const data = await result.json();
+        return data.items;
+    }
+
+    const _getUserTopArtistsMedium = async(token) => {
+        const result = await fetch('https://api.spotify.com/v1/me/top/artists?time_range=medium_term', {
+            method: 'GET',
+            headers: {'Authorization': 'Bearer ' + token}
+        });
+
+        const data = await result.json();
+        return data.items;
+    }
+
+    const_getUserTopTracksLong = async(token) => {
+        const result = await fetch('https://api.spotify.com/v1/me/top/tracks?time_range=long_term', {
+            method: 'GET',
+            headers: {'Authorization': 'Bearer ' + token}
+        });
+    
+        const data = await result.json();
+        return data.items;
+    }
+
+    const _getUserTopArtistsLong = async(token) => {
+        const result = await fetch('https://api.spotify.com/v1/me/top/artists?time_range=long_term', {
+            method: 'GET',
+            headers: {'Authorization': 'Bearer ' + token}
+        });
+
+        const data = await result.json();
+        return data.items;
+    }
+
 })();

@@ -1,3 +1,7 @@
+body{
+    margin: 0;
+}
+
 .topnav{
     display: flex;
     font-size: 30px;
@@ -7,16 +11,17 @@
 
 .maintitle{
     margin-right: auto;
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 15px;
     text-decoration: none;
     color: white;
 }
 
 .nav{
-    padding: 10px;
+    padding-top: 10px;
     text-decoration: none;
     color: white;
-    margin-right: 300px;
+    margin-right: 150px;
 }
 
 .nav:hover{

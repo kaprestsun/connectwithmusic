@@ -107,11 +107,11 @@ const APIController = (function(){
 // window.localStorage.setItem('code_verifier', codeVerifier)
 
 // const params = {
-//     response_type: 'code',
-//     client_id: clientId,,
-//     code_challenge_method: 'S256',
-//     code_challenge: codeChallenge,
-//     redirect_uri: redirectUri
+    // response_type: 'code',
+    // client_id: clientId,,
+    // code_challenge_method: 'S256',
+    // code_challenge: codeChallenge,
+    // redirect_uri: redirectUri
 // }
 
 // authUrl.search = new URLSearchParams(params).toString();

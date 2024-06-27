@@ -2,31 +2,14 @@ const express = require('express');
 
 const clientId = 'd5515a499f564a1594caaa79d7d5a58f';
 const clientSecret = 'c86c8962759a4fd78dc7a3ecfb513473';
-const redirectUri = 'http://localhost';
+const redirectUri = 'http://localhost:8888/callback/';
 
 
 let app = express();
 
-app.use(express.static(__dirname + '/public'))
-  .use(cors())
-  .use(cookieParser());
-
-  app.get('/login', function(req, res) {
-    let state = generateRandomString(16);
-    res.cookie(stateKey, state);
-  
-    const scope = 'user-read-private user-read-email';
-    const url = 'https://accounts.spotify.com/authorize?' +
-      querystring.stringify({
-        response_type: 'code',
-        client_id: clientId,
-        scope: scope,
-        redirect_uri: redirectUri,
-        state: state
-      });
-  
-    res.redirect(url);
-  });
+app.use(express.static(__dirname + '/public'));
+console.log('Listening on 8888');
+app.listen(8888);
 
 app.get('/callback', function(req, res) { // reroutes to callback after login
 

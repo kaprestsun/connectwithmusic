@@ -86,7 +86,23 @@ app.get('/refresh_token', function (req, res){
             'Authorization': 'Basic ' + (Buffer.from(clientId + ':' + clientSecret).toString('base64')),
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: 'grant_type=refresh_token&refresh_token'
-    }
-})
+        body: 'grant_type=refresh_token&refresh_token=${refresh_token}'
+    };
 
+    fetch('https://accounts.spotify.com/api/token/', authOptions)
+        .then((response) => {
+            if (response.status === 200){
+                response.json().then((data)=>{
+                    const access_token = data.acces_token;
+                    res.send({access_token});
+                });
+            };
+        }) 
+        .catch((error) => {
+            console.error(error);
+            res.send(error);
+        });
+});
+
+console.log('listening on 8888');
+app.listen(8888);

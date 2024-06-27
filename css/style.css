@@ -10,6 +10,7 @@ body{
 }
 
 .maintitle{
+    font-family: "Lucida Console", "Courier New", monospace;
     margin-right: auto;
     padding-top: 10px;
     padding-bottom: 15px;
@@ -84,4 +85,35 @@ body{
 
 .pagetitle{
     margin-left: 15px;
+}
+
+.spotifylogin{
+    color: black;
+    text-decoration: none;
+    background-color: #00FF00;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.spotifylogin:hover{
+    color: white;
+
+}
+
+.introbody {
+    font-family: "Lucida Console", "Courier New", monospace;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -150px;
+    background-color: white;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
+    outline: 4px solid;
+    box-shadow: 9px 9px;
 }

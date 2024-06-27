@@ -1,32 +1,15 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
 
 const clientId = 'd5515a499f564a1594caaa79d7d5a58f';
 const clientSecret = 'c86c8962759a4fd78dc7a3ecfb513473';
-const redirectUri = 'http://localhost';
-
+const redirectUri = "htpps://localhost:8888/home";
+const stateKey = 'spotify_auth_state';
 
 let app = express();
-
-app.use(express.static(__dirname + '/public'))
-  .use(cors())
-  .use(cookieParser());
-
-  app.get('/login', function(req, res) {
-    let state = generateRandomString(16);
-    res.cookie(stateKey, state);
-  
-    const scope = 'user-read-private user-read-email';
-    const url = 'https://accounts.spotify.com/authorize?' +
-      querystring.stringify({
-        response_type: 'code',
-        client_id: clientId,
-        scope: scope,
-        redirect_uri: redirectUri,
-        state: state
-      });
-  
-    res.redirect(url);
-  });
+app.use(express.static(__dirname + '/public'));
+app.use(cookieParser());
+const port = 8888;
 
 app.get('/callback', function(req, res) { // reroutes to callback after login
 
@@ -94,3 +77,5 @@ app.get('/refresh_token', function (req, res){
             res.send(error);
         });
 });
+
+app.listen(port, () => console.info(`Listening on port ${port}`));

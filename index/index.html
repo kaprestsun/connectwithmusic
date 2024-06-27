@@ -10,7 +10,7 @@
     <div class="topnav">
         <a class="maintitle" href="index.html"> Connect With Music </a>
     </div>
-    <div class="introbody">
+    <div id="introbody">
         <div class="intro">
             <p>Explore your music! Discover taste.</p>
         </div>
@@ -65,19 +65,19 @@
                 success: function(response) {
                   userProfilePlaceholder.innerHTML = userProfileTemplate(response);
 
-                  $('#login').hide();
+                  $('#introbody').hide();
                   $('#logged-in').show();
                 }
             });
           } else {
-              $('#login').show();
+              $('#introbody').show();
               $('#logged-in').hide();
           };
         };
 
         document.getElementById('spotifylogin').addEventListener('click', function() {
             var client_id = 'd5515a499f564a1594caaa79d7d5a58f';
-            var redirect_uri = 'http://localhost';
+            var redirect_uri = 'http://localhost:8888/callback/';
 
             var state = generateRandomString(16);
 

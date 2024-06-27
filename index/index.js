@@ -1,23 +1,9 @@
 const express = require('express');
-const querystring = require('querystring');
-const cors = require('cors')
-const cookieParser = require('cookie-parser');
 
 const clientId = 'd5515a499f564a1594caaa79d7d5a58f';
 const clientSecret = 'c86c8962759a4fd78dc7a3ecfb513473';
 const redirectUri = 'http://localhost';
 
-const generateRandomString = function (length) {
-    var text = '';
-    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-    for (let i = 0; i < length; i++) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-    return text;
-  };
-
-let stateKey = 'spotify_auth_state';
 
 let app = express();
 
@@ -25,21 +11,22 @@ app.use(express.static(__dirname + '/public'))
   .use(cors())
   .use(cookieParser());
 
-document.getElementById('spotifylogin').addEventListener('click', function() {
-    let stateNew = generateRandomString(16);
+  app.get('/login', function(req, res) {
+    let state = generateRandomString(16);
     res.cookie(stateKey, state);
-
+  
     const scope = 'user-read-private user-read-email';
-    var url = 'https://accounts.spotify.com/authorize';
-    url += '?response_type=token';
-    url += '&client_id=' + encodeURIComponent(clientId);
-    url += '&scope=' + encodeURIComponent(scope);
-    url += '&redirect_uri=' + encodeURIComponent(redirectUri);
-    url += '&state=' + encodeURIComponent(stateNew);
-
-    window.location = url;
-    
-});
+    const url = 'https://accounts.spotify.com/authorize?' +
+      querystring.stringify({
+        response_type: 'code',
+        client_id: clientId,
+        scope: scope,
+        redirect_uri: redirectUri,
+        state: state
+      });
+  
+    res.redirect(url);
+  });
 
 app.get('/callback', function(req, res) { // reroutes to callback after login
 

@@ -15,15 +15,14 @@
             <p>Explore your music! Discover taste.</p>
         </div>
         <div id="login">
-            <button class="spotifylogin">Log in with Spotify</button> 
+            <button id="spotifylogin">Log in with Spotify</button> 
         </div>
     </div>
     <div id="logged-in">
         <p>hi</p>
     </div>
-    <script type="module" src="index.js"></script>
     <script>
-
+    (function () {
         function getHashParams() {
             let hashParams = {};
             let e, r = /([^&;=]+)=?([^&;]*)/g,
@@ -36,33 +35,65 @@
 
         let params = getHashParams();
 
+        let stateKey = 'spotify_auth_state';
         let access_token = params.access_token;
         let refresh_token = params.refresh_token;
+        let storedState = localStorage.getItem(stateKey)
         let error = params.error;
+        let state = params.state;
 
-        if (error){
-            alert('An error has occured during the autehntication');
-        } else {
-            if (access_token){
-                $('#login').hide()
-                $('#logged-in').show()
-            } else {
-                $('#login').show()
-                $('#logged-in').hide()
-            };
+        const generateRandomString = function (length) {
+        var text = '';
+        var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+        for (let i = 0; i < length; i++) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+        return text;
         };
 
-        document.getElementById('refresh-token').addEventListener('click', function(){
+        if (access_token && (state == null || state !== storedState)) {
+          alert('There was an error during the authentication');
+        } else {
+          localStorage.removeItem(stateKey);
+          if (access_token) {
             $.ajax({
-                url: '/refresh_token',
-                data: {
-                    'refresh_token': refresh_token
+                url: 'https://api.spotify.com/v1/me',
+                headers: {
+                  'Authorization': 'Bearer ' + access_token
+                },
+                success: function(response) {
+                  userProfilePlaceholder.innerHTML = userProfileTemplate(response);
+
+                  $('#login').hide();
+                  $('#logged-in').show();
                 }
-            }).done(function(data) {
-                access_token = data.access_token;
-                console.log(`new access token: ${access_token}`);
-            })
-        }, false);
+            });
+          } else {
+              $('#login').show();
+              $('#logged-in').hide();
+          };
+        };
+
+        document.getElementById('spotifylogin').addEventListener('click', function() {
+            var client_id = 'd5515a499f564a1594caaa79d7d5a58f';
+            var redirect_uri = 'http://localhost';
+
+            var state = generateRandomString(16);
+
+            localStorage.setItem(stateKey, state);
+            var scope = 'user-read-private user-read-email';
+
+            var url = 'https://accounts.spotify.com/authorize';
+            url += '?response_type=token';
+            url += '&client_id=' + encodeURIComponent(client_id);
+            url += '&scope=' + encodeURIComponent(scope);
+            url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
+            url += '&state=' + encodeURIComponent(state);
+
+            window.location = url;
+          }, false);
+    })();
    </script>
 
 

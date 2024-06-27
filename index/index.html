@@ -10,7 +10,7 @@
     <div class="topnav">
         <a class="maintitle" href="index.html"> Connect With Music </a>
     </div>
-    <div class="introbody">
+    <div id="introbody">
         <div class="intro">
             <p>Explore your music! Discover taste.</p>
         </div>
@@ -65,12 +65,12 @@
                 success: function(response) {
                   userProfilePlaceholder.innerHTML = userProfileTemplate(response);
 
-                  $('#login').hide();
+                  $('#introbody').hide();
                   $('#logged-in').show();
                 }
             });
           } else {
-              $('#login').show();
+              $('#introbody').show();
               $('#logged-in').hide();
           };
         };

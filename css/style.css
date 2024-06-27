@@ -101,7 +101,7 @@ body{
     cursor: pointer;
 }
 
-.introbody {
+#introbody {
     font-family: "Lucida Console", "Courier New", monospace;
     text-align: center;
     position: fixed;

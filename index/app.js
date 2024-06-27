@@ -1,12 +1,14 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
 
 const clientId = 'd5515a499f564a1594caaa79d7d5a58f';
 const clientSecret = 'c86c8962759a4fd78dc7a3ecfb513473';
-const redirectUri = 'http://localhost:8888/callback/';
-
+const redirectUri = "htpps://localhost:8888/home";
+const stateKey = 'spotify_auth_state';
 
 let app = express();
 app.use(express.static(__dirname + '/public'));
+app.use(cookieParser());
 const port = 8888;
 
 app.get('/callback', function(req, res) { // reroutes to callback after login

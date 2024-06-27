@@ -6,10 +6,8 @@ const redirectUri = 'http://localhost:8888/callback/';
 
 
 let app = express();
-
 app.use(express.static(__dirname + '/public'));
-console.log('Listening on 8888');
-app.listen(8888);
+const port = 8888;
 
 app.get('/callback', function(req, res) { // reroutes to callback after login
 
@@ -77,3 +75,5 @@ app.get('/refresh_token', function (req, res){
             res.send(error);
         });
 });
+
+app.listen(port, () => console.info(`Listening on port ${port}`));

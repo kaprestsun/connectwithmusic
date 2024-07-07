@@ -1,7 +1,7 @@
 const clientId = 'd5515a499f564a1594caaa79d7d5a58f';
 const clientSecret = 'c86c8962759a4fd78dc7a3ecfb513473';
 
-var redirect = "htpps://localhost:8888/home";
+var redirect = "https://localhost:8888/home";
 
 const AUTHORIZE = "https://accounts.spotify.com/authorize";
 const TOKEN = 'https://accounts.spotify.com/api/token';
@@ -83,3 +83,7 @@ const APIController = (function(){
     }
 
 })();
+
+
+//HFIEUFHSEUFHSPFUHPSUFHSEPF SFUSHFIUH@! ++++++++++++++++++++++++++
+

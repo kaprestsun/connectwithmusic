@@ -136,7 +136,7 @@ app.use('/images', express.static(__dirname + 'public/images'));
 
 
 app.get('/', function(req, res) {
-    res.sendFile(__dirname + "/index.html")
+    res.sendFile(__dirname + "/index/index.html")
 });
 
 app.get('/login', function (req, res) {

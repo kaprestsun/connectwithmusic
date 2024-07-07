@@ -133,6 +133,7 @@ app.use(cors());
 app.use(cookieParser());
 app.use('/css', express.static(__dirname + 'public/css'));
 app.use('/images', express.static(__dirname + 'public/images'));
+app.use('/js', express.static(__dirname + 'public/js'));
 
 
 app.get('/', function(req, res) {

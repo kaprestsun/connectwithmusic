@@ -131,7 +131,8 @@ let app = express();
 app.use(express.static(__dirname + '/public'));
 app.use(cors());
 app.use(cookieParser());
-// app.use('/css', express.static(path.join(__dirname, '..', 'css')));
+app.use('/css', express.static(__dirname + 'public/css'));
+app.use('/images', express.static(__dirname + 'public/images'));
 
 
 app.get('/', function(req, res) {

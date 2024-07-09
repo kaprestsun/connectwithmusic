@@ -114,9 +114,10 @@ const cookieParser = require('cookie-parser');
 
 const client_id = 'd5515a499f564a1594caaa79d7d5a58f';
 const client_secret = 'c86c8962759a4fd78dc7a3ecfb513473';
-const redirect_uri = "https://localhost:8888/callback";
+const redirect_uri = "http://localhost:8888/callback";
 
 const generateRandomString = function (length) {
+    let text = '';
     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
     for (let i = 0; i < length; i++) {
@@ -134,6 +135,7 @@ app.use(cors());
 app.use(cookieParser());
 app.use('/css', express.static(__dirname + 'public/css'));
 app.use('/images', express.static(__dirname + 'public/images'));
+app.use('/html', express.static(__dirname + 'public/html'));
 // app.use('/js', express.static(__dirname + 'public/js'));
 
 app.get('/', function(req, res) {
@@ -144,17 +146,23 @@ app.get('/login', function (req, res) {
 
     let state = generateRandomString(16);
     res.cookie(stateKey, state);
+    console.log(encodeURIComponent(redirect_uri))
 
     const scope = 'user-read-private user-read-email';
     res.redirect('https://accounts.spotify.com/authorize?' +
         querystring.stringify({
-            response_type: 'code',
+            response_type: 'token',
             client_id: client_id,
             scope: scope,
             redirect_uri: redirect_uri,
             state: state
         }));
 });
+
+// app.get('/home', function (req, res) {
+//     res.sendFile(__dirname + "/html/home.html")
+// }) 
+
 
 app.get('/callback', function (req, res) {
 
@@ -176,7 +184,7 @@ app.get('/callback', function (req, res) {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': 'Basic ' + (Buffer.from(client_id + ':' + client_secret).toString('base64'))
             },
-            body: `code=${code}&redirect_uri=${encodeURIComponent(redirect_uri)}&grant_type=authorization_code`,
+            body: `code=${code}&redirect_uri=${redirect_uri}&grant_type=authorization_code`,
             json: true
         };
 

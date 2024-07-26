@@ -131,12 +131,12 @@ let stateKey = 'spotify_auth_state';
 let app = express();
 
 app.use(express.static(__dirname + '/public'));
-app.use(express.static(__dirname + 'public/index.html'));
+app.use(express.static(__dirname + '/public/index.html'));
 app.use(cors());
 app.use(cookieParser());
-app.use('/css', express.static(__dirname + 'public/css'));
-app.use('/images', express.static(__dirname + 'public/images'));
-app.use('/html', express.static(__dirname + 'public/html'));
+app.use('/css', express.static(__dirname + '/public/css'));
+app.use('/images', express.static(__dirname + '/public/images'));
+app.use('/html', express.static(__dirname + '/public/html'));
 // app.use('/js', express.static(__dirname + 'public/js'));
 
 app.get('/', function(req, res) {

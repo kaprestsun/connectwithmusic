@@ -6,6 +6,7 @@
 </head>
 
 <body>
+    <div id="login">
     <div class="topnav">
         <a class="maintitle" href="index.html"> Connect With Music </a>
     </div>
@@ -13,7 +14,6 @@
         <div class="intro">
             <p>Explore your music! Discover taste.</p>
         </div>
-        <div id="login">
             <a id="spotifylogin" href="/login"> <spotifylogin">Log in with Spotify </a>
         </div>
     </div>
@@ -135,8 +135,6 @@
         } else {
             if (access_token) {
                 $('#login').hide();
-                $('.topnav').hide();
-                $('#introbody').hide();
                 $('#logged-in').show();
             } else {
                 $('#login').show();

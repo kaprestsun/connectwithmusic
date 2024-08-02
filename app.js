@@ -143,10 +143,8 @@ app.get('/', function(req, res) {
 });
 
 app.get('/login', function (req, res) {
-
     let state = generateRandomString(16);
     res.cookie(stateKey, state);
-    console.log(encodeURIComponent(redirect_uri))
 
     const scope = 'user-read-private user-read-email';
     res.redirect('https://accounts.spotify.com/authorize?' +

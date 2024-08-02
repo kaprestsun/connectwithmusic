@@ -111,7 +111,6 @@ const express = require('express');
 const querystring = require('querystring');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-const fetch = require('node-fetch');
 
 const client_id = 'd5515a499f564a1594caaa79d7d5a58f';
 const client_secret = 'c86c8962759a4fd78dc7a3ecfb513473';
@@ -152,12 +151,13 @@ app.get('/login', function (req, res) {
     const scope = 'user-read-private user-read-email';
     res.redirect('https://accounts.spotify.com/authorize?' +
         querystring.stringify({
-            response_type: 'token',
+            response_type: 'code',
             client_id: client_id,
             scope: scope,
             redirect_uri: redirect_uri,
             state: state
         }));
+    console.log("State from query: ", state);
 });
 
 // app.get('/home', function (req, res) {
@@ -185,8 +185,9 @@ app.get('/callback', function (req, res) {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': 'Basic ' + (Buffer.from(client_id + ':' + client_secret).toString('base64'))
             },
-            body: `code=${code}&redirect_uri=${redirect_uri}&grant_type=authorization_code`,
-            json: true
+            body: `grant_type=refresh_token&refresh_token=${refresh_token}`,
+            // body: `code=${code}&redirect_uri=${redirect_uri}&grant_type=authorization_code`,
+            // json: true
         };
 
         fetch('https://accounts.spotify.com/api/token', authOptions)

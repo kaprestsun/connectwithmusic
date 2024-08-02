@@ -14,7 +14,7 @@
         <div class="intro">
             <p>Explore your music! Discover taste.</p>
         </div>
-            <a id="spotifylogin" href="/login"> "Log in with Spotify </a>
+            <a id="spotifylogin" href="/login"> Log in with Spotify </a>
         </div>
     </div>
     <div id="logged-in">
@@ -97,7 +97,7 @@
 
     //     document.getElementById('spotifylogin').addEventListener('click', function() {
     //         var client_id = 'd5515a499f564a1594caaa79d7d5a58f';
-    //         var redirect_uri = 'http://localhost:8888/callback/';
+    //         var redirect_uri = 'http://localhost:8888/callback';
 
     //         var state = generateRandomString(16);
 
@@ -131,7 +131,7 @@
         let error = params.error;
 
         if (error) {
-            alert('There was an error during the authentication');
+            alert(`There was an error during the authentication ${error}`);
         } else {
             if (access_token) {
                 $('#login').hide();

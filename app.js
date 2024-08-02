@@ -185,7 +185,12 @@ app.get('/callback', function (req, res) {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': 'Basic ' + (Buffer.from(client_id + ':' + client_secret).toString('base64'))
             },
-            body: `grant_type=refresh_token&refresh_token=${refresh_token}`,
+            body: querystring.stringify({
+                code: code,
+                redirect_uri: redirect_uri,
+                grant_type: 'authorization_code'
+            }),
+            // body: `grant_type=refresh_token&refresh_token=${refresh_token}`,
             // body: `code=${code}&redirect_uri=${redirect_uri}&grant_type=authorization_code`,
             // json: true
         };
@@ -201,6 +206,7 @@ app.get('/callback', function (req, res) {
                                 access_token: access_token,
                                 refresh_token: refresh_token
                             }));
+                        console.log('refresh_token', refresh_token)
                     });
                 } else {
                     res.redirect('/#' +

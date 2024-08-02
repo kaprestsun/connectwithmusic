@@ -114,6 +114,7 @@
     //         window.location = url;
     //       }, false);
     // })();
+    (function() {
         function getHashParams() {
             let hashParams = {};
             let e, r = /([^&;=]+)=?([^&;]*)/g,
@@ -141,6 +142,7 @@
                 $('#logged-in').hide();
             };
         };
+    })();
    </script>
 
 
@@ -148,7 +150,7 @@
 
 <style>
     body{
-        background-image: url("../images/randomalbums.jpg");
+        background-image: url("js/public/../images/randomalbums.jpg");
         background-repeat: repeat;
         background-size: 280px;
     }

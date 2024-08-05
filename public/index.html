@@ -6,6 +6,7 @@
 </head>
 
 <body>
+    <div id="login">
     <div class="topnav">
         <a class="maintitle" href="index.html"> Connect With Music </a>
     </div>
@@ -13,8 +14,7 @@
         <div class="intro">
             <p>Explore your music! Discover taste.</p>
         </div>
-        <div id="login">
-            <a id="spotifylogin" href="/login"> <spotifylogin">Log in with Spotify </a>
+            <a id="spotifylogin" href="/login"> Log in with Spotify </a>
         </div>
     </div>
     <div id="logged-in">
@@ -97,7 +97,7 @@
 
     //     document.getElementById('spotifylogin').addEventListener('click', function() {
     //         var client_id = 'd5515a499f564a1594caaa79d7d5a58f';
-    //         var redirect_uri = 'http://localhost:8888/callback/';
+    //         var redirect_uri = 'http://localhost:8888/callback';
 
     //         var state = generateRandomString(16);
 
@@ -114,6 +114,7 @@
     //         window.location = url;
     //       }, false);
     // })();
+    (function() {
         function getHashParams() {
             let hashParams = {};
             let e, r = /([^&;=]+)=?([^&;]*)/g,
@@ -131,7 +132,7 @@
         let error = params.error;
 
         if (error) {
-            alert('There was an error during the authentication');
+            alert(`Error during the authentication ${error}`);
         } else {
             if (access_token) {
                 $('#login').hide();
@@ -141,6 +142,7 @@
                 $('#logged-in').hide();
             };
         };
+    })();
    </script>
 
 
@@ -148,7 +150,7 @@
 
 <style>
     body{
-        background-image: url("../images/randomalbums.jpg");
+        background-image: url("js/public/../images/randomalbums.jpg");
         background-repeat: repeat;
         background-size: 280px;
     }

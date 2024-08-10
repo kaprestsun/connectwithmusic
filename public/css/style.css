@@ -1,0 +1,120 @@
+body{
+    margin: 0;
+}
+
+.topnav{
+    display: flex;
+    font-size: 25px;
+    background-color: black;
+    padding: 20px;
+}
+
+.maintitle{
+    font-family: "Lucida Console", "Courier New", monospace;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    text-decoration: none;
+    color: white;
+}
+
+.nav{
+    padding-top: 10px;
+    text-decoration: none;
+    color: white;
+    margin-right: 150px;
+}
+
+.nav:hover{
+    border-bottom: 3px solid white;
+}
+
+.profilebutton {
+    margin-top: 5px;
+    margin-right: 30px;
+    appearance: none;
+    border: none;
+    background-color: inherit;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+  }
+
+.profileimage{
+    display: inline-block;
+    border: none;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.profiledot{
+    position: relative;
+    display: inline-block;
+}
+
+.dropdowncontent{
+    margin-right: 10px;
+    border-radius: 2px;
+    margin-top: 4px;
+    display: none;
+    position: absolute;
+}
+
+.dropdownlink{
+    padding: 10px;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdownlink:hover{
+    color: green;
+    padding: 10px;
+}
+
+.profiledot:hover .dropdowncontent{
+    display: block;
+}
+
+
+.explore{
+    margin-right: 20px;
+}
+
+.pagetitle{
+    margin-left: 15px;
+}
+
+#spotifylogin{
+    color: black;
+    text-decoration: none;
+    background-color: #00FF00;
+    padding: 11px;
+    border-radius: 5px;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+#spotifylogin:hover{
+    color: white;
+    cursor: pointer;
+}
+
+#introbody {
+    font-family: "Lucida Console", "Courier New", monospace;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -150px;
+    background-color: white;
+    padding-top: 20px;
+    padding-bottom: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
+    outline: 4px solid;
+    box-shadow: 9px 9px;
+}
